@@ -4,7 +4,7 @@ using namespace std;
 
 void game(int _size)
 {
-	int horizontal1{}, vertical1{}, horizontal2{}, vertical2{}, len{}, count{}, randNum{}, num{}, start{}, exit{};
+	int horizontal1{}, vertical1{}, horizontal2{}, vertical2{}, len{}, count{}, randNum{}, num{}, start{}, exit{}, count1{}, time1{}, trying{};
 	srand(time(0));
 	if (_size == 1)
 	{
@@ -60,25 +60,27 @@ void game(int _size)
 		}
 	}
 
-	cout << "Remember the order of the numbers" << endl << endl;;
-
-
-	for (size_t i = 0; i < len; i++)
-	{
-		for (size_t j = 0; j < len; j++)
-		{
-			cout << arr1[i][j] << "\t";
-		}
-		cout << endl;
-		cout << endl;
-	}
 
 	while (true)
 	{
+		cout << "Remember the order of the numbers" << endl << endl;;
+
+
+		for (size_t i = 0; i < len; i++)
+		{
+			for (size_t j = 0; j < len; j++)
+			{
+				cout << arr1[i][j] << "\t";
+			}
+			cout << endl;
+			cout << endl;
+		}
+
 		cout << "1. Start game" << endl
 			<< "2. Back to main menu" << endl
 			<< "Enter choice - "; cin >> start;
 		system("cls");
+		time1 = time(0);
 
 		switch (start)
 		{
@@ -91,18 +93,30 @@ void game(int _size)
 				for (size_t j = 0; j < len; j++)
 				{
 					cout << arr2[i][j] << "\t";
+					if (arr2[i][j] != 0)
+					{
+						count1++;
+					}
 				}
 				cout << endl;
 				cout << endl;
+				if (count1 == (len * len))
+				{
+					cout << "You win!!!" << endl;
+					cout << "Spent time - " << time(0) - time1 << endl;
+					cout << "Spent trying - " << trying << endl;
+					cout << endl << endl;
+					break;
+				}
 			}
 
-			cout << "If you want to exit enter 0" << endl
-				<< "Continue enter 1" << endl
-				<< "Look at the block enter 2" << endl
+			cout << "Continue enter - 1" << endl
+				<< "Look at the block enter - 2" << endl
+				<< "If you want to exit enter - 3" << endl
 				<< "Enter choice - "; cin >> exit;
 			system("cls");
 
-			if (exit == 0)
+			if (exit == 3)
 			{
 				break;
 			}
@@ -122,12 +136,23 @@ void game(int _size)
 					<< "Enter choice - "; cin >> exit;
 				system("cls");
 			}
+			while (true)
+			{
+				cout << "Enter vertical value - "; cin >> vertical1;
+				cout << "Enter horizontal value - "; cin >> horizontal1;
+				if (arr2[vertical1 - 1][horizontal1 - 1] != 0)
+				{
+					cout << "You have already opened this cell" << endl << endl;
+				}
+				else
+				{
+					break;
+				}
 
-			cout << "Enter horizontal value - "; cin >> horizontal1;
-			cout << "Enter vertical value - "; cin >> vertical1;
+			}
 			cout << "Enter the coordinates of the second number - " << arr1[vertical1 - 1][horizontal1 - 1] << endl;
-			cout << "Enter horizontal value - "; cin >> horizontal2;
 			cout << "Enter vertical value - "; cin >> vertical2;
+			cout << "Enter horizontal value - "; cin >> horizontal2;
 
 			system("cls");
 
@@ -135,14 +160,18 @@ void game(int _size)
 			{
 				arr2[vertical1 - 1][horizontal1 - 1] = arr1[vertical1 - 1][horizontal1 - 1];
 				arr2[vertical2 - 1][horizontal2 - 1] = arr1[vertical2 - 1][horizontal2 - 1];
+				trying++;
 
 			}
 			else
 			{
 				cout << "Didn't guess try again" << endl << endl;				
+				trying++;
+
 			}
 
 			}
+
 
 			break;
 		case 2:
