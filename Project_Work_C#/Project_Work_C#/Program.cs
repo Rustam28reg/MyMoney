@@ -30,11 +30,12 @@ while (key)
          "3. Select a dictionary\n" +
          "4. Exit.\n" +
          "Enter choice - ");
-    int choice = int.Parse(Console.ReadLine());
+        string choice = Console.ReadLine();
+
     Console.Clear();
     try
     {
-        if (!Regex.IsMatch(choice.ToString(), "^[1-4]{1}$"))
+        if (!Regex.IsMatch(choice, "^[1-4]{1}$"))
         {
             throw new Exception("Input error");
         }
@@ -46,7 +47,7 @@ while (key)
 
     switch (choice)
     {
-        case 1:
+        case "1":
             try
             {
                 MenuManager.CreateDictionary(ref dictionaryes);
@@ -57,7 +58,7 @@ while (key)
             }
             break;
 
-        case 2:
+        case "2":
             try
             {
                 MenuManager.DeleteDictionary(ref dictionaryes);
@@ -66,10 +67,9 @@ while (key)
             {
                 Console.WriteLine(e.Message);
             }
-
             break;
 
-        case 3:
+        case "3":
             try
             {
                 MenuManager.DictionaryManager(ref dictionaryes);
@@ -80,7 +80,7 @@ while (key)
             }
             break;
 
-        case 4:
+        case "4":
             Dictionary<string, List<string>> files = new();
             files["files"] = new List<string>();
             foreach (var item in dictionaryes)

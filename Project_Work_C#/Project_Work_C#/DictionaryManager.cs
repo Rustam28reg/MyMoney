@@ -29,11 +29,7 @@ namespace Project_Work_C_
             }
             else
             {
-                List<string> list = new();
-                list = MyDictionary[key];
-
-                list.Add(value);
-                MyDictionary[key] = list;
+                MyDictionary[key].Add(value);
             }
         }
         public void DeleteTranslete(string key, string value)

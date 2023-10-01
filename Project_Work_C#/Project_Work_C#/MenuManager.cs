@@ -13,30 +13,12 @@ namespace Project_Work_C_
     {
         public static void CreateDictionary(ref Dictionary<string, DictionaryManager> dictionaryes)
         {
-            bool key = true;
-            while (key)
+            
+            while (true)
             {
-                Console.Write("Select a dictionary to create:\n" +
-                             "1. Russian-English dictionary\n" +
-                             "2. English-Russian\n" +
-                             "3. Russian-French\n" +
-                             "4. Franco-Russian\n" +
-                             "5. Exit\n" +
-                             "Enter choice - ");
-                int choice = int.Parse(Console.ReadLine());
-
-                if (!Regex.IsMatch(choice.ToString(), "^[1-5]{1}$"))
-                {
-                    throw new Exception("Input error in create");
-                }
-
+                string keyDict = SelectInterface();
+                if (keyDict == "5") { Console.Clear(); break; }
                 Console.Clear();
-
-                if (choice == 5) { break; }
-
-                string[] arrKey = new string[4] { "RU-EN", "EN-RU", "RU-FR", "FR-RU" };
-                string keyDict = arrKey[choice - 1];
-
 
                 if (dictionaryes.ContainsKey(keyDict))
                 {
@@ -54,31 +36,13 @@ namespace Project_Work_C_
         {
             while (true)
             {
-                Console.Write("Select a dictionary to delete:\n" +
-                     "1. Russian-English dictionary\n" +
-                     "2. English-Russian\n" +
-                     "3. Russian-French\n" +
-                     "4. Franco-Russian\n" +
-                     "5. Exit\n" +
-                     "Enter choice - ");
-                int choice = int.Parse(Console.ReadLine());
-
-                if (!Regex.IsMatch(choice.ToString(), "^[1-5]{1}$"))
-                {
-                    throw new Exception("Input error in delete");
-                }
-
-                if (choice == 5) { break; }
-
+                string keyDict = SelectInterface();
+                if (keyDict == "5") { Console.Clear(); break; }
                 Console.Clear();
-
-
-                string[] arrKey = new string[4] { "RU-EN", "EN-RU", "RU-FR", "FR-RU" };
-                string keyDict = arrKey[choice - 1];
 
                 if (!dictionaryes.ContainsKey(keyDict))
                 {
-                    continue;
+                    throw new Exception("The dictionary does not exist.");
                 }
                 dictionaryes.Remove(keyDict);
 
@@ -87,8 +51,6 @@ namespace Project_Work_C_
 
         public static void DictionaryManager(ref Dictionary<string, DictionaryManager> dictionaryes)
         {
-            string[] arrKey = new string[4] { "RU-EN", "EN-RU", "RU-FR", "FR-RU" };
-
             Dictionary<string, string> patterns = new();
             patterns["RU"] = "^[А-Яа-я]+$";
             patterns["EN"] = "^[A-Za-z]+$";
@@ -96,22 +58,8 @@ namespace Project_Work_C_
 
             while (true)
             {
-                Console.Write("Select a dictionary to work with:\n" +
-                     "1. Russian-English dictionary\n" +
-                     "2. English-Russian\n" +
-                     "3. Russian-French\n" +
-                     "4. Franco-Russian\n" +
-                     "5. Exit\n" +
-                     "Enter choice - ");
-                int choice = int.Parse(Console.ReadLine());
-
-                if (!Regex.IsMatch(choice.ToString(), "^[1-5]{1}$"))
-                {
-                    throw new Exception("Input error in dictionary manager");
-                }
-                if (choice == 5) { Console.Clear(); break; }
-                string keyDict = arrKey[choice - 1];
-
+                string keyDict = SelectInterface();
+                if (keyDict == "5") { Console.Clear(); break; }
                 Console.Clear();
 
                 if (!dictionaryes.ContainsKey(keyDict))
@@ -120,7 +68,7 @@ namespace Project_Work_C_
                          "1. Create a dictionary.\n" +
                          "2. Go back.\n" +
                          "Enter selection - ");
-                    int choice1 = int.Parse(Console.ReadLine());
+                    string choice1 = Console.ReadLine();
 
                     if (!Regex.IsMatch(choice1.ToString(), "^[1-2]{1}$"))
                     {
@@ -131,10 +79,10 @@ namespace Project_Work_C_
 
                     switch (choice1)
                     {
-                        case 1:
+                        case "1":
                             dictionaryes.Add(keyDict, new DictionaryManager());
                             break;
-                        case 2:
+                        case "2":
                             continue;
                         default:
                             break;
@@ -152,7 +100,7 @@ namespace Project_Work_C_
                              "6. Print the entire dictionary.\n" +
                              "7. Go back.\n" +
                              "Enter selection - ");
-                    int choice2 = int.Parse(Console.ReadLine());
+                    string choice2 = Console.ReadLine();
 
                     if (!Regex.IsMatch(choice2.ToString(), "^[1-7]{1}$"))
                     {
@@ -163,7 +111,7 @@ namespace Project_Work_C_
 
                     switch (choice2)
                     {
-                        case 1:                                                                        
+                        case "1":                                                                        
 
                             while (true)
                             {
@@ -197,7 +145,7 @@ namespace Project_Work_C_
                             Console.Clear();
                             break;
 
-                        case 2:                                                                                 
+                        case "2":                                                                                 
                             while (true)
                             {
                                 Console.Write("Enter 0 to exit.\n" + "Enter word - ");
@@ -228,7 +176,7 @@ namespace Project_Work_C_
                             Console.Clear();
                             break;
 
-                        case 3:                                                                                 
+                        case "3":                                                                                 
                             while (true)
                             {
                                 Console.Write("Enter 0 to exit.\n\n" + "Enter word - ");
@@ -262,7 +210,7 @@ namespace Project_Work_C_
                             Console.Clear();
                             break;
 
-                        case 4:                                                                                 
+                        case "4":                                                                                 
 
                             while (true)
                             {
@@ -295,7 +243,7 @@ namespace Project_Work_C_
                             }
                             Console.Clear();
                             break;
-                        case 5:                                                                                                       
+                        case "5":                                                                                                       
 
                             while (true)
                             {
@@ -337,7 +285,7 @@ namespace Project_Work_C_
                             Console.Clear();
                             break;
 
-                        case 6:                                                                                         
+                        case "6":                                                                                         
 
                             Dictionary<string, List<string>> dictionary = dictionaryes[keyDict].GetDictionary();
 
@@ -353,7 +301,7 @@ namespace Project_Work_C_
                             Console.WriteLine("\n");
 
                             break;
-                        case 7:
+                        case "7":
                             key1 = false;
                             break;
                         default:
@@ -361,6 +309,27 @@ namespace Project_Work_C_
                     }
                 }
             }
+        }
+
+        private static string SelectInterface()
+        {
+            Console.Write("Select a dictionary to delete:\n" +
+                                "1. Russian-English dictionary\n" +
+                                "2. English-Russian\n" +
+                                "3. Russian-French\n" +
+                                "4. Franco-Russian\n" +
+                                "5. Exit\n" +
+                                "Enter choice - ");
+            string choice = Console.ReadLine();
+
+            if (!Regex.IsMatch(choice.ToString(), "^[1-5]{1}$"))
+            {
+                throw new Exception("Input error");
+            }            
+            string[] arrKey = new string[5] { "RU-EN", "EN-RU", "RU-FR", "FR-RU", "5" };
+            string keyDict = arrKey[int.Parse(choice) - 1];
+
+            return keyDict;
         }
     }
 }
