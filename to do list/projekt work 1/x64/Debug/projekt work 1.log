@@ -1,9 +1,0 @@
-﻿  Functions.cpp
-C:\projects\Projet work\projekt work 1\projekt work 1\Functions.cpp(1,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-C:\projects\Projet work\projekt work 1\projekt work 1\Functions.cpp(233,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Projet work\projekt work 1\projekt work 1\Functions.cpp(249,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Projet work\projekt work 1\projekt work 1\Functions.cpp(280,27): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\projects\Projet work\projekt work 1\projekt work 1\Functions.cpp(308,25): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-  projekt work 1.cpp
-  Generating Code...
-  projekt work 1.vcxproj -> C:\projects\Projet work\projekt work 1\x64\Debug\projekt work 1.exe
