@@ -79,14 +79,15 @@
         </Grid.RowDefinitions>
 
 
-        
+
         <Button Template="{StaticResource ResourceKey=IconButton}"
             x:Name="CarButton"
             Grid.Row="3"
             Grid.Column="1"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Car.png" />
         </Button>
 
@@ -96,7 +97,8 @@
             Grid.Column="1"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Phone.png" />
         </Button>
 
@@ -106,7 +108,8 @@
             Grid.Column="1"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Food.png" />
         </Button>
 
@@ -116,7 +119,8 @@
             Grid.Column="1"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Health.png" />
         </Button>
 
@@ -126,7 +130,8 @@
             Grid.Column="1"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Party.png" />
         </Button>
 
@@ -136,7 +141,8 @@
             Grid.Column="2"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Hygiene.png" />
         </Button>
 
@@ -146,7 +152,8 @@
             Grid.Column="3"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Present.png" />
         </Button>
 
@@ -156,7 +163,8 @@
             Grid.Column="2"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Pet.png" />
         </Button>
 
@@ -166,7 +174,8 @@
             Grid.Column="4"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Rest.png" />
         </Button>
 
@@ -176,8 +185,9 @@
             Grid.Column="4"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
-            
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
+
             <Image Source="/Views/Res/ChartIcons/Restaurant.png" />
         </Button>
 
@@ -187,7 +197,8 @@
             Grid.Column="4"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Sport.png" />
         </Button>
 
@@ -197,7 +208,8 @@
             Grid.Column="3"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Taxi.png" />
         </Button>
 
@@ -207,17 +219,19 @@
             Grid.Column="4"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Travel.png" />
         </Button>
-        
+
         <Button Template="{StaticResource ResourceKey=IconButton}"
             x:Name="ClothButton"
             Grid.Row="3"
             Grid.Column="4"
             Width="70"
             Height="70"
-            Command="{Binding CategoriesCommand}">
+            Command="{Binding CategoriesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
             <Image Source="/Views/Res/ChartIcons/Cloth.png" />
 
 

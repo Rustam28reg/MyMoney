@@ -104,9 +104,9 @@ namespace WPF_ProjectWork.ViewModels
             if (allText[allText.Length - 1].ToString() == "-" &&  allText[allText.Length - 1].ToString() == "+" &&
              allText[allText.Length - 1].ToString() == "*" &&  allText[allText.Length - 1].ToString() == "/")
             {
+    }
                 while (allText[allText.Length - 1] < 48 && allText[allText.Length - 1] > 57)
                     allText.Remove(allText.Length - 1, 1);
             }
         }
-    }
 }
