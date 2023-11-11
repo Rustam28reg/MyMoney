@@ -1,0 +1,129 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Res\Background\BackGr.jpg" />
+    <None Remove="Views\Res\Background\test.jpg" />
+    <None Remove="Views\Res\ChartIcons\Car.png" />
+    <None Remove="Views\Res\ChartIcons\Cloth.png" />
+    <None Remove="Views\Res\ChartIcons\Food.png" />
+    <None Remove="Views\Res\ChartIcons\Health.png" />
+    <None Remove="Views\Res\ChartIcons\Hygiene.png" />
+    <None Remove="Views\Res\ChartIcons\Party.png" />
+    <None Remove="Views\Res\ChartIcons\Pet.png" />
+    <None Remove="Views\Res\ChartIcons\Phone.png" />
+    <None Remove="Views\Res\ChartIcons\Present.png" />
+    <None Remove="Views\Res\ChartIcons\Rest.png" />
+    <None Remove="Views\Res\ChartIcons\Restaurant.png" />
+    <None Remove="Views\Res\ChartIcons\Sport.png" />
+    <None Remove="Views\Res\ChartIcons\Taxi.png" />
+    <None Remove="Views\Res\ChartIcons\Travel.png" />
+    <None Remove="Views\Res\Icons\acounts.png" />
+    <None Remove="Views\Res\Icons\Backspace.png" />
+    <None Remove="Views\Res\Icons\categories.png" />
+    <None Remove="Views\Res\Icons\currencies.png" />
+    <None Remove="Views\Res\Icons\DownButton.png" />
+    <None Remove="Views\Res\Icons\Menu.png" />
+    <None Remove="Views\Res\Icons\Search.png" />
+    <None Remove="Views\Res\Icons\settings.png" />
+    <None Remove="Views\Res\Icons\Transfer.png" />
+    <None Remove="Views\Res\Icons\UpButton.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Res\Background\BackGr.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Background\test.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Car.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Cloth.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Food.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Health.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Hygiene.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Present.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Party.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Pet.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Phone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Restaurant.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Sport.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Taxi.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\ChartIcons\Travel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\acounts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\Backspace.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\categories.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\currencies.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\DownButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\Menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\Search.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\settings.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\Transfer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\UpButton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts" Version="0.9.7" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="SimpleInjector" Version="5.4.1" />
+  </ItemGroup>
+
+</Project>

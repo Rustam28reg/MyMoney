@@ -1,0 +1,195 @@
+﻿<UserControl x:Class="WPF_ProjectWork.Views.CalculatorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_ProjectWork.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="500">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="CalculatorButton" TargetType="Button">
+            <Grid Name="Btn">
+                <Border>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Foreground="#71C2FF" Content="{TemplateBinding Content}" Background="Transparent" FontSize="40" Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                    </StackPanel>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type Button}},
+                                            Path=IsPressed}" Value="true">
+                                    <Setter Property="Margin" Value="0 2 0 0"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+                <Border Name="MouseOverBorder" Background="Gray">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Opacity" Value="0"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=Btn}"
+                                             Value="true">
+                                    <Setter Property="Opacity" Value="0.1"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="BackspaceButton" TargetType="Button">
+            <Grid Name="Btn">
+                <Border>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label Foreground="#e07c75" Content="{TemplateBinding Content}" Background="Transparent" FontSize="40" Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                </Style>
+                            </Label.Style>
+                        </Label>
+                    </StackPanel>
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type Button}},
+                                            Path=IsPressed}" Value="true">
+                                    <Setter Property="Margin" Value="0 2 0 0"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="BackButton" TargetType="Button">
+        <Grid Name="Btn">
+            <Border>
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Label Foreground="#e07c75" Content="{TemplateBinding Content}" Background="Transparent" FontSize="40" Margin="5 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label.Style>
+                            <Style TargetType="Label">
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </StackPanel>
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type Button}},
+                                            Path=IsPressed}" Value="true">
+                                <Setter Property="Margin" Value="0 2 0 0"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+            <Border Name="MouseOverBorder" Background="Gray">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Setter Property="Opacity" Value="0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=Btn}"
+                                             Value="true">
+                                <Setter Property="Opacity" Value="0.1"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </Grid>
+    </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border Background="Black" Opacity="0.6" Height="100" Width="450" BorderThickness="1" BorderBrush="#71C2FF" Grid.Row ="1" Grid.RowSpan="2" Grid.ColumnSpan="4">
+            <StackPanel Orientation="Horizontal">
+            <TextBox IsReadOnly = "true"  Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Height="100" Width="360" FontSize="60" Foreground ="#71C2FF" TextAlignment="Center"/>
+                <Button Command="{Binding BackSpace}" Template="{StaticResource ResourceKey=BackspaceButton}" Width="90" Height="80">
+                    <Image Source="/Views/Res/Icons/Backspace.png"/>
+
+                </Button>     
+            </StackPanel>
+
+        </Border>
+
+        <TextBox Foreground="#71C2FF" FontSize="25" md:HintAssist.Hint ="Note" CaretBrush="#71C2FF"  md:TextFieldAssist.UnderlineBrush="#71C2FF" 
+            Grid.Row="3" Grid.ColumnSpan="4" Height="45" VerticalAlignment="Top">
+
+        </TextBox>
+
+
+
+        <Button Grid.Row="4" Grid.Column="0" Template="{StaticResource ResourceKey=CalculatorButton}" Content="1" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="1"/>
+        <Button Grid.Row="4" Grid.Column="1" Template="{StaticResource ResourceKey=CalculatorButton}" Content="2" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="2"/>
+        <Button Grid.Row="4" Grid.Column="2" Template="{StaticResource ResourceKey=CalculatorButton}" Content="3" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="3"/>
+        <Button Grid.Row="4" Grid.Column="3" Template="{StaticResource ResourceKey=CalculatorButton}" Content="+" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="+"/>
+        <Button Grid.Row="5" Grid.Column="0" Template="{StaticResource ResourceKey=CalculatorButton}" Content="4" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="4"/>
+        <Button Grid.Row="5" Grid.Column="1" Template="{StaticResource ResourceKey=CalculatorButton}" Content="5" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="5"/>
+        <Button Grid.Row="5" Grid.Column="2" Template="{StaticResource ResourceKey=CalculatorButton}" Content="6" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="6"/>
+        <Button Grid.Row="5" Grid.Column="3" Template="{StaticResource ResourceKey=CalculatorButton}" Content="-" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="-"/>
+        <Button Grid.Row="6" Grid.Column="0" Template="{StaticResource ResourceKey=CalculatorButton}" Content="7" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="7"/>
+        <Button Grid.Row="6" Grid.Column="1" Template="{StaticResource ResourceKey=CalculatorButton}" Content="8" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="8"/>
+        <Button Grid.Row="6" Grid.Column="2" Template="{StaticResource ResourceKey=CalculatorButton}" Content="9" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="9"/>
+        <Button Grid.Row="6" Grid.Column="3" Template="{StaticResource ResourceKey=CalculatorButton}" Content="*" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="*"/>
+        <Button Grid.Row="7" Grid.Column="0" Template="{StaticResource ResourceKey=CalculatorButton}" Content="." Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="."/>
+        <Button Grid.Row="7" Grid.Column="1" Template="{StaticResource ResourceKey=CalculatorButton}" Content="0" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="0"/>
+        <Button Grid.Row="7" Grid.Column="2" Template="{StaticResource ResourceKey=CalculatorButton}" Content="=" Height="80" FontWeight="Medium"
+                Command="{Binding Equal_Click}" CommandParameter="="/>
+        <Button Grid.Row="7" Grid.Column="3" Template="{StaticResource ResourceKey=CalculatorButton}" Content="/" Height="80" FontWeight="Medium"
+                Command="{Binding Number_Click}" CommandParameter="/"/>
+        <Button Grid.Row="8" Grid.ColumnSpan="4" Template="{StaticResource ResourceKey=CalculatorButton}" Content="Enter" Height="80" FontWeight="Medium"
+                Command="{Binding Add_Command}"/>
+        <Button Grid.Row="9" Grid.ColumnSpan="4" Template="{StaticResource ResourceKey=BackButton}" Content="Back" Height="80" FontWeight="Medium"
+                Command="{Binding Back_Click}"/>
+
+
+    </Grid>
+</UserControl>
