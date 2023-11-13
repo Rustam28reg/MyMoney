@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using LiveCharts.Wpf.Charts.Base;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using WPF_ProjectWork.Messages;
 using WPF_ProjectWork.Services.Classes;
 using WPF_ProjectWork.Services.Interfaces;
 
@@ -16,6 +19,11 @@ namespace WPF_ProjectWork.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IDataService _dataService;
+        private readonly IMessenger _messenger;
+        private CategoriesManager _manager;
+        private MyPieChart Chart { get; set; }
+        private Button Button {  get; set; }
+
         private string text;
         private double result;
         private StringBuilder allText = new();
@@ -28,11 +36,21 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
-        public CalculatorViewModel(INavigationService navigationService, IDataService dataService)
+        public CalculatorViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger, CategoriesManager manager)
         {
             _navigationService = navigationService;
             _dataService = dataService;
+            _messenger = messenger;
+            _manager = manager;
+
+            _messenger.Register<DataMessage>(this, message =>
+            {
+               Button = message.Data[0] as Button;
+               Chart = message.Data[1] as MyPieChart;
+            });
         }
+
+
         public GenericButtonCommand<string> Number_Click
         {
             get => new((operation) =>
@@ -49,7 +67,6 @@ namespace WPF_ProjectWork.ViewModels
                 Check();
             });
         }
-
         public ButtonCommand Equal_Click
         {            
             get => new(() => 
@@ -60,7 +77,6 @@ namespace WPF_ProjectWork.ViewModels
                 allText.Append(Text);
             });
         }
-
         public ButtonCommand BackSpace
         {
             get => new(() =>
@@ -75,7 +91,6 @@ namespace WPF_ProjectWork.ViewModels
                     }       
             });
         }
-
         public ButtonCommand Back_Click
         {
             get => new(
@@ -90,22 +105,27 @@ namespace WPF_ProjectWork.ViewModels
         {
             get => new(
             () =>
-            {
-                result = double.Parse(allText.ToString());
-                _dataService.SendData(result);
+            {                
+                result = double.Parse(new DataTable().Compute(allText.ToString(), "").ToString());                
+                _dataService.NewSendData(result);
+                _manager.GetCharts(Button, Chart);
                 _navigationService.NavigateTo<DiagramViewModel>();
                 Text = "";
                 allText.Clear();
-            });
+            },
+            () =>
+            {
+                return !(allText.Length == 0);
+            }
+            );
         }
-
         private void Check()
         {
-            if (allText[allText.Length - 1].ToString() == "-" &&  allText[allText.Length - 1].ToString() == "+" &&
-             allText[allText.Length - 1].ToString() == "*" &&  allText[allText.Length - 1].ToString() == "/")
+            if (allText[allText.Length - 1].ToString() == "-" ||  allText[allText.Length - 1].ToString() == "+" &&
+             allText[allText.Length - 1].ToString() == "*" ||  allText[allText.Length - 1].ToString() == "/")
             {
     }
-                while (allText[allText.Length - 1] < 48 && allText[allText.Length - 1] > 57)
+                while (allText[allText.Length - 1] < 48 || allText[allText.Length - 1] > 57)
                     allText.Remove(allText.Length - 1, 1);
             }
         }

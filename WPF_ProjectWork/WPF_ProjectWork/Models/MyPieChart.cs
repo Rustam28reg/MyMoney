@@ -13,7 +13,7 @@ namespace WPF_ProjectWork.Services.Classes
     class MyPieChart
     {
         public double balance = 0;
-        public DateTime date = DateTime.Now;
+        public DateTime date = DateTime.Today;
         public PieChart _Chart { get; set; } = new();
 
     }

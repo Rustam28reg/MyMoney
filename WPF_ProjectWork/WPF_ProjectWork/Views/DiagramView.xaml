@@ -81,7 +81,7 @@
 
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="CarButton"
+            x:Name="Car"
             Grid.Row="3"
             Grid.Column="1"
             Width="70"
@@ -92,7 +92,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="PhoneButton"
+            x:Name="Phone"
             Grid.Row="2"
             Grid.Column="1"
             Width="70"
@@ -103,7 +103,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="FoodButton"
+            x:Name="Food"
             Grid.Row="4"
             Grid.Column="1"
             Width="70"
@@ -114,7 +114,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="HealthButton"
+            x:Name="Health"
             Grid.Row="5"
             Grid.Column="1"
             Width="70"
@@ -125,7 +125,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="PartyButton"
+            x:Name="Party"
             Grid.Row="6"
             Grid.Column="1"
             Width="70"
@@ -136,7 +136,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="HygieneButton"
+            x:Name="Hygiene"
             Grid.Row="6"
             Grid.Column="2"
             Width="70"
@@ -147,7 +147,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="PresentButton"
+            x:Name="Present"
             Grid.Row="6"
             Grid.Column="3"
             Width="70"
@@ -158,7 +158,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="PetButton"
+            x:Name="Pet"
             Grid.Row="2"
             Grid.Column="2"
             Width="70"
@@ -169,7 +169,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="RestButton"
+            x:Name="Rest"
             Grid.Row="6"
             Grid.Column="4"
             Width="70"
@@ -180,7 +180,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="RestaurantButton"
+            x:Name="Restaurant"
             Grid.Row="5"
             Grid.Column="4"
             Width="70"
@@ -192,7 +192,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="SportButton"
+            x:Name="Sport"
             Grid.Row="4"
             Grid.Column="4"
             Width="70"
@@ -203,7 +203,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="TaxiButton"
+            x:Name="Taxi"
             Grid.Row="2"
             Grid.Column="3"
             Width="70"
@@ -214,7 +214,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="TravelButton"
+            x:Name="Travel"
             Grid.Row="2"
             Grid.Column="4"
             Width="70"
@@ -225,7 +225,7 @@
         </Button>
 
         <Button Template="{StaticResource ResourceKey=IconButton}"
-            x:Name="ClothButton"
+            x:Name="Cloth"
             Grid.Row="3"
             Grid.Column="4"
             Width="70"
@@ -244,28 +244,25 @@
             Grid.Column="2"
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
-            IsEnabled="False"
-            Content="{Binding MyChart._Chart}">
-            <!--<wp:PieChart.Series>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-                <wp:PieSeries Values="0"/>
-            </wp:PieChart.Series>-->
-
+            Content="{Binding MyChart._Chart}"
+            >
         </wp:PieChart>
-
-
+        <Border Grid.ColumnSpan="6" BorderThickness="0 0 0 1" BorderBrush="#71C2FF">
+            
+        </Border>
+        <Grid Grid.ColumnSpan="2">
+            <Button Width="70" Template="{StaticResource ResourceKey=IconButton}">
+                <Image Source="/Views/Res/Icons/Left.png" />
+            </Button>
+        </Grid>
+        <Grid Grid.Column="2" Grid.ColumnSpan="2">
+            <Label Content="Hello" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#71C2FF" FontSize="20" FontWeight="Bold"/>
+        </Grid>
+        <Grid Grid.Column="4" Grid.ColumnSpan="2">
+            <Button Width="70" Template="{StaticResource ResourceKey=IconButton}">
+                <Image Source="/Views/Res/Icons/Right.png" />
+            </Button>
+        </Grid>
     </Grid>
 
 </UserControl>

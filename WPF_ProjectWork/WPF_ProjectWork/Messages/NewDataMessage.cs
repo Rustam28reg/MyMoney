@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WPF_ProjectWork.Messages
 {
-    class DataMessage
+    class NewDataMessage
     {
-        public object[] Data { get; set; }
+        public object Data { get; set; }
     }
 }

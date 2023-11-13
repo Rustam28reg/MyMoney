@@ -29,7 +29,9 @@
     <None Remove="Views\Res\Icons\categories.png" />
     <None Remove="Views\Res\Icons\currencies.png" />
     <None Remove="Views\Res\Icons\DownButton.png" />
+    <None Remove="Views\Res\Icons\Left.png" />
     <None Remove="Views\Res\Icons\Menu.png" />
+    <None Remove="Views\Res\Icons\Right.png" />
     <None Remove="Views\Res\Icons\Search.png" />
     <None Remove="Views\Res\Icons\settings.png" />
     <None Remove="Views\Res\Icons\Transfer.png" />
@@ -100,7 +102,13 @@
     <Content Include="Views\Res\Icons\DownButton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\Res\Icons\Left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Res\Icons\Menu.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Res\Icons\Right.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Res\Icons\Search.png">

@@ -18,9 +18,16 @@ class DataService : IDataService
         _messenger = messenger;
     }
 
-    public void SendData(object data)
+    public void SendData(object[] data)
     {
         _messenger.Send(new DataMessage()
+        {
+            Data = data
+        });
+    }
+    public void NewSendData(object data)
+    {
+        _messenger.Send(new NewDataMessage()
         {
             Data = data
         });
