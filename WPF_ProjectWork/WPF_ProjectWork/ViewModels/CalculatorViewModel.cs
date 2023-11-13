@@ -107,7 +107,7 @@ namespace WPF_ProjectWork.ViewModels
             () =>
             {                
                 result = double.Parse(new DataTable().Compute(allText.ToString(), "").ToString());                
-                _dataService.NewSendData(result);
+                _dataService.NewSendData(result); 
                 _manager.GetCharts(Button, Chart);
                 _navigationService.NavigateTo<DiagramViewModel>();
                 Text = "";

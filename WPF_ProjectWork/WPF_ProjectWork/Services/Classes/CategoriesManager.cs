@@ -49,7 +49,7 @@ namespace WPF_ProjectWork.Services.Classes
             get => myChart;
             set
             {
-                Set(ref myChart, value);
+                myChart = value;
             }
         }
 
@@ -65,38 +65,30 @@ namespace WPF_ProjectWork.Services.Classes
             });
         }
 
-        public void GetCharts (Button _button, MyPieChart _chart)
+        public void GetCharts(Button _button, MyPieChart _chart)
         {
             MyButton = _button;
             MyChart = _chart;
 
-
-                bool seriesFound = false;
-
-                for (int i = 0; i < MyChart._Chart.Series.Count; i++)
+            for (int i = 0; i < MyChart._Chart.Series.Count; i++)
+            {
+                if (MyChart._Chart.Series[i].Title == MyButton.Name)
                 {
-                    if (MyChart._Chart.Series[i].Title == MyButton.Name)
+                    for (int j = 0; j < MyChart._Chart.Series[i].Values.Count; j++)
                     {
-                        for (int j = 0; j < MyChart._Chart.Series[i].Values.Count; j++)
-                        {
-                            MyChart._Chart.Series[i].Values[j] = (double)MyChart._Chart.Series[i].Values[j] + Result;
-                        }
-                        seriesFound = true;
-                        break;
+                        MyChart._Chart.Series[i].Values[j] = (double)MyChart._Chart.Series[i].Values[j] + Result;
                     }
+                    return;                    
                 }
-
-                if (!seriesFound)
-                {
-                    MyChart._Chart.Series.Add(new PieSeries
-                    {
-                        Title = MyButton.Name,
-                        Values = new ChartValues<double> { Result },
-                        Fill = new SolidColorBrush(chartProp[MyButton.Name])
-                    });
-                }
+            }
 
 
+            MyChart._Chart.Series.Add(new PieSeries
+            {
+                Title = MyButton.Name,
+                Values = new ChartValues<double> { Result },
+                Fill = new SolidColorBrush(chartProp[MyButton.Name])
+            });
 
         }
 

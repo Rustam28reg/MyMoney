@@ -244,22 +244,22 @@
             Grid.Column="2"
             Grid.RowSpan="3"
             Grid.ColumnSpan="2"
-            Content="{Binding MyChart._Chart}"
-            >
+            Content="{Binding MyChart._Chart}">
         </wp:PieChart>
+        
         <Border Grid.ColumnSpan="6" BorderThickness="0 0 0 1" BorderBrush="#71C2FF">
             
         </Border>
         <Grid Grid.ColumnSpan="2">
-            <Button Width="70" Template="{StaticResource ResourceKey=IconButton}">
+            <Button Command="{Binding Left_button}" Width="70" Template="{StaticResource ResourceKey=IconButton}">
                 <Image Source="/Views/Res/Icons/Left.png" />
             </Button>
         </Grid>
         <Grid Grid.Column="2" Grid.ColumnSpan="2">
-            <Label Content="Hello" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#71C2FF" FontSize="20" FontWeight="Bold"/>
+            <TextBlock Text ="{Binding Time, StringFormat='dd.MM.yyyy'}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#71C2FF" FontSize="20" FontWeight="Bold"/>
         </Grid>
         <Grid Grid.Column="4" Grid.ColumnSpan="2">
-            <Button Width="70" Template="{StaticResource ResourceKey=IconButton}">
+            <Button Command="{Binding Right_button}" Width="70" Template="{StaticResource ResourceKey=IconButton}">
                 <Image Source="/Views/Res/Icons/Right.png" />
             </Button>
         </Grid>

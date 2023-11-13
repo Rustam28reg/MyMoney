@@ -24,7 +24,17 @@ namespace WPF_ProjectWork.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IDataService _dataService;
 
-        private List<MyPieChart> _pieCharts = new();
+        private DateTime time;
+        public DateTime Time
+        {
+            get => time;
+            set
+            {
+                Set(ref time, value);
+            }
+        }
+
+        private Dictionary<DateTime, MyPieChart> my_charts = new();
 
         private MyPieChart myChart = new();
         public MyPieChart MyChart
@@ -37,16 +47,52 @@ namespace WPF_ProjectWork.ViewModels
         }
         public DiagramViewModel(INavigationService navigationService, IDataService dataService)
         {
+            Time = DateTime.Today;
             _navigationService = navigationService;
-            _dataService = dataService;
-            _pieCharts.Add(MyChart);
+            _dataService = dataService;            
         }
         public GenericButtonCommand<Button> CategoriesCommand
         {
             get => new(button =>
             {
-                _dataService.SendData(new object[] { button, MyChart });
+                if (!my_charts.ContainsKey(Time))
+                {
+                    myChart = new();
+                    my_charts.Add(Time,MyChart);
+                }
+                _dataService.SendData(new object[] { button, my_charts[Time]});
                 _navigationService.NavigateTo<CalculatorViewModel>();
+            });
+        }
+
+        public ButtonCommand Right_button
+        {
+            get => new(() =>
+            {
+                Time = Time.AddDays(+1);
+                if (my_charts.ContainsKey(Time))
+                {
+                    MyChart = my_charts[Time];
+                }
+                else 
+                {
+                    MyChart = null;
+                }
+            });
+        }
+        public ButtonCommand Left_button
+        {
+            get => new(() => 
+            {
+                 Time = Time.AddDays(-1);
+                if (my_charts.ContainsKey(Time))
+                {
+                    MyChart = my_charts[Time];
+                }
+                else
+                {
+                    MyChart = null;
+                }
             });
         }
     }

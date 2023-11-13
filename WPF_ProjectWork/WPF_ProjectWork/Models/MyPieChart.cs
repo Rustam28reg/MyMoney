@@ -12,9 +12,12 @@ namespace WPF_ProjectWork.Services.Classes
 {
     class MyPieChart
     {
-        public double balance = 0;
-        public DateTime date = DateTime.Today;
+        public double income = 0;
+        public double expenses = 0;
         public PieChart _Chart { get; set; } = new();
-
+        public MyPieChart()
+        {
+            _Chart.InnerRadius = 55;
+        }
     }
 }
