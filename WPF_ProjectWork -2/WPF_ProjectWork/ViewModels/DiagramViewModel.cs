@@ -26,8 +26,9 @@ namespace WPF_ProjectWork.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IDataService _dataService;
         private readonly IMessenger _messenger;
-        private DateTime time;
+        private DateTime time = DateTime.Now;
         private ChartManager _chartManager = new();
+        private bool check = false;
 
         private Transaction _transaction = new();
         public Transaction Transaction
@@ -63,6 +64,7 @@ namespace WPF_ProjectWork.ViewModels
                 Set(ref myChart, value);
             }
         }
+
         public DiagramViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger, ChartManager chartManager)
         {
             Time = DateTime.Today;
@@ -75,25 +77,20 @@ namespace WPF_ProjectWork.ViewModels
             {
                 Transaction = (Transaction)message.Data;
                 MyChart = _chartManager.GetCharts(Transaction);
-
-                if (Transactions.Count == 0) 
+                Transactions.Add(Transaction);
+                foreach (var item in Transactions)
                 {
-                    Transactions.Add(Transaction);
-                }
-                else
-                {
-                    foreach (var item in Transactions)
+                    if (item.Date == Time.Date)
                     {
-                        if (item.Category == Transaction.Category && item.Date == Transaction.Date)
-                        {
-                            item.Value += Transaction.Value;
-                        }
-                        else
-                        {
-                            Transactions.Add(Transaction);
-                        }
+                        MyChart = _chartManager.GetCharts(item);
+                        check = true;
                     }
                 }
+                if (!check)
+                {
+                    MyChart = null;
+                }
+                check = false;                
             });
         }
         public DelegateCommand<Button> CategoriesCommand
@@ -104,7 +101,7 @@ namespace WPF_ProjectWork.ViewModels
                 {
                     foreach (var item in Transactions)
                     {
-                        if (item.Date == Time)
+                        if (item.FullTime == Time)
                         {
                             _dataService.SendData(new object[] { button, item, Time });
                             _navigationService.NavigateTo<CalculatorViewModel>();
@@ -131,15 +128,17 @@ namespace WPF_ProjectWork.ViewModels
                 Time = Time.AddDays(+1);
                 foreach (var item in Transactions)
                 {
-                    if (item.Date == Time)
+                    if (item.Date == Time.Date)
                     {
-                        MyChart = _chartManager.GetCharts(Transaction);
-                    }
-                    else
-                    {
-                        MyChart = null;
+                        MyChart = _chartManager.GetCharts(item);
+                        check = true;
                     }
                 }
+                if (!check)
+                {
+                    MyChart = null;
+                }
+                check = false;
             });
         }
         public DelegateCommand Left_button
@@ -149,15 +148,17 @@ namespace WPF_ProjectWork.ViewModels
                 Time = Time.AddDays(-1);
                 foreach (var item in Transactions)
                 {
-                    if (item.Date == Time)
+                    if (item.Date == Time.Date)
                     {
-                        MyChart = _chartManager.GetCharts(Transaction);
-                    }
-                    else
-                    {
-                        MyChart = null;
+                        MyChart = _chartManager.GetCharts(item);
+                        check = true;
                     }
                 }
+                if (!check)
+                {
+                    MyChart = null;
+                }
+                check = false;
             });
         }
     }

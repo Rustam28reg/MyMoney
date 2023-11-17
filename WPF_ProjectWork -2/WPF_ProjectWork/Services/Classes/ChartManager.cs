@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
+using LiveCharts.Wpf.Charts.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,23 +19,26 @@ namespace WPF_ProjectWork.Services.Classes
         {
             Transaction = _transaction;
 
-            var existingSeries = Chart.Series.FirstOrDefault(item => item.Title == _transaction.Category);
-
-            if (existingSeries != null && existingSeries is PieSeries pieSeries)
+            for (int i = 0; i < Chart.Series.Count; i++)
             {
-                pieSeries.Values[0] = (double)pieSeries.Values[0] + _transaction.Value;
-            }
-            else
-            {
-                Chart.Series.Add(new PieSeries
+                if (Chart.Series[i].Title == Transaction.Category)
                 {
-                    Title = _transaction.Category,
-                    Values = new ChartValues<double> { _transaction.Value },
-                    Fill = new SolidColorBrush(_transaction.Color)
-                });
+                    for (int j = 0; j < Chart.Series[i].Values.Count; j++)
+                    {
+                        Chart.Series[i].Values[j] = (double)Chart.Series[i].Values[j] + Transaction.Value;
+                    }
+                    return Chart;
+                }
             }
 
+            Chart.Series.Add(new PieSeries
+            {
+                Title = Transaction.Category,
+                Values = new ChartValues<double> { Transaction.Value },
+                Fill = new SolidColorBrush(Transaction.Color)
+            });
             return Chart;
         }
     }
+
 }

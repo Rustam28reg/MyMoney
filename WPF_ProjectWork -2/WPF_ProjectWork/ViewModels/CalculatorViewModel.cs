@@ -131,7 +131,7 @@ namespace WPF_ProjectWork.ViewModels
             () =>
             {
                 _result = double.Parse(new DataTable().Compute(allText.ToString(), "").ToString());
-                Transaction = new Transaction(InputText, _result, Time, _expense);
+                Transaction = new Transaction(Time, InputText, _result, DateTime.Now, _expense);
                 _dataService.NewSendData(Transaction);
                 _navigationService.NavigateTo<DiagramViewModel>();
                 Text = "";

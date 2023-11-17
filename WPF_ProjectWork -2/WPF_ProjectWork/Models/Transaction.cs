@@ -14,26 +14,29 @@ namespace WPF_ProjectWork.Services.Classes
     {
         public string Description { get; set; } //описание
         public double Value { get; set; } //Количество
+        public DateTime FullTime { get; set; }
         public DateTime Date { get; set; }
         public string Category { get; set; }
         public Color Color { get; set; }
 
         public Transaction() {}
 
-        public Transaction(string description, double value, DateTime date, string category, Color color)
+        public Transaction(DateTime date, string description, double value, DateTime allDate, string category, Color color)
         {
             Description = description;
             Value = value;
             Date = date;
+            FullTime = allDate;
             Category = category;
             Color = color;
         }
 
-        public Transaction(string description, double value, DateTime date, Expense category)
+        public Transaction(DateTime date, string description, double value, DateTime allDate, Expense category)
         {
             Description = description;
             Value = value;
             Date = date;
+            FullTime = allDate;
             Category = category.ToString();
             switch (category)
             {
@@ -82,11 +85,12 @@ namespace WPF_ProjectWork.Services.Classes
             }
         }
 
-        public Transaction(string description, double value, DateTime date, Encome category)
+        public Transaction(DateTime date, string description, double value, DateTime allDate, Encome category)
         {
             Description = description;
             Value = value;
             Date = date;
+            FullTime = allDate;
             Category = category.ToString();
 
             switch (category)
