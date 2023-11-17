@@ -82,7 +82,6 @@ namespace WPF_ProjectWork.Services.Classes
                 }
             }
 
-
             MyChart._Chart.Series.Add(new PieSeries
             {
                 Title = MyButton.Name,

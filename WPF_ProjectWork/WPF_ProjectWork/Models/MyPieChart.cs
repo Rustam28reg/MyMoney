@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 
 
+
 namespace WPF_ProjectWork.Services.Classes
 {
     class MyPieChart
     {
-        public double income = 0;
-        public double expenses = 0;
+        public List<double> _income;
+        public  double _expenses = 0;
         public PieChart _Chart { get; set; } = new();
         public MyPieChart()
         {

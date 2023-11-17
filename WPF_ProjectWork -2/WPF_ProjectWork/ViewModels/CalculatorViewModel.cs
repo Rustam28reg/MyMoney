@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using LiveCharts.Wpf.Charts.Base;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using WPF_ProjectWork.Enums;
 using WPF_ProjectWork.Messages;
 using WPF_ProjectWork.Services.Classes;
 using WPF_ProjectWork.Services.Interfaces;
@@ -21,9 +23,17 @@ namespace WPF_ProjectWork.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IDataService _dataService;
         private readonly IMessenger _messenger;
-        private CategoriesManager _manager;
-        private MyPieChart Chart { get; set; }
+        private Expense _expense;
+        public string InputText { get; set; }
+        public DateTime Time { get; set; }
+        private Transaction Transaction { get; set; }
         private Button Button { get; set; }
+        public DelegateCommand<string> Number_Click { get; set; }
+        public DelegateCommand Equal_Click { get; set; }
+        public DelegateCommand BackSpace { get; set; }
+        public DelegateCommand Back_Click { get; set; }
+        public DelegateCommand Add_Command { get; set; }
+
 
         private string _text;
         private double _result;
@@ -49,28 +59,28 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
-        public CalculatorViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger, CategoriesManager manager)
+        public CalculatorViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger)
         {
             _navigationService = navigationService;
             _dataService = dataService;
             _messenger = messenger;
-            _manager = manager;
-            _text = "";            
+            _text = "";
 
             _messenger.Register<DataMessage>(this, message =>
             {
                 Button = message.Data[0] as Button;
-                Chart = message.Data[1] as MyPieChart;
+                Transaction = message.Data[1] as Transaction;
                 _image = Button.Content as Image;
                 Image = _image.Source.ToString();
+                Time = (DateTime)message.Data[2];
+                Enum.TryParse(Button.Name, out _expense);
             });
-        }
 
-        public GenericButtonCommand<string> Number_Click
-        {
-            get => new((operation) =>
+
+            Number_Click = new DelegateCommand<string>(
+            (operation) =>
             {
-                if (Text.Length < 12 )
+                if (Text.Length < 12)
                 {
                     if (operation != "+" && operation != "-" && operation != "*" && operation != "/")
                     {
@@ -83,10 +93,8 @@ namespace WPF_ProjectWork.ViewModels
                     allText.Append(operation);
                 }
             });
-        }
-        public ButtonCommand Equal_Click
-        {
-            get => new(() =>
+            Equal_Click = new DelegateCommand(
+            () =>
             {
                 Check();
                 Text = new DataTable().Compute(allText.ToString(), "").ToString();
@@ -96,11 +104,10 @@ namespace WPF_ProjectWork.ViewModels
             () =>
             {
                 return !(allText.Length == 0);
-            });
-        }
-        public ButtonCommand BackSpace
-        {
-            get => new(() =>
+            }).ObservesProperty(() => Text);
+
+            BackSpace = new DelegateCommand(
+            () =>
             {
                 if (!string.IsNullOrEmpty(Text) && allText.Length != 0)
                 {
@@ -111,25 +118,21 @@ namespace WPF_ProjectWork.ViewModels
                     allText.Remove(allText.Length - 1, 1);
                 }
             });
-        }
-        public ButtonCommand Back_Click
-        {
-            get => new(
+
+            Back_Click = new DelegateCommand(
             () =>
             {
                 Text = "";
                 allText.Clear();
                 _navigationService.NavigateTo<DiagramViewModel>();
             });
-        }
-        public ButtonCommand Add_Command
-        {
-            get => new(
+
+            Add_Command = new DelegateCommand(
             () =>
             {
                 _result = double.Parse(new DataTable().Compute(allText.ToString(), "").ToString());
-                _dataService.NewSendData(_result);
-                _manager.GetCharts(Button, Chart);
+                Transaction = new Transaction(InputText, _result, Time, _expense);
+                _dataService.NewSendData(Transaction);
                 _navigationService.NavigateTo<DiagramViewModel>();
                 Text = "";
                 allText.Clear();
@@ -138,8 +141,10 @@ namespace WPF_ProjectWork.ViewModels
             {
                 return !(allText.Length == 0);
             }
-            );
+            ).ObservesProperty(() => Text);
+
         }
+
         private void Check()
         {
             if (allText[allText.Length - 1].ToString() == "-" || allText[allText.Length - 1].ToString() == "+" &&
@@ -151,3 +156,4 @@ namespace WPF_ProjectWork.ViewModels
         }
     }
 }
+

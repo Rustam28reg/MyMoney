@@ -23,7 +23,6 @@ namespace WPF_ProjectWork.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IDataService _dataService;
-
         private DateTime time;
         public DateTime Time
         {
@@ -92,7 +91,7 @@ namespace WPF_ProjectWork.ViewModels
                 else
                 {
                     MyChart = null;
-                }
+                } 
             });
         }
     }
