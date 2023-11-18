@@ -30,8 +30,8 @@ namespace WPF_ProjectWork.ViewModels
         private ChartManager _chartManager = new();
         private bool check = false;
 
-        private Transaction _transaction = new();
-        public Transaction Transaction
+        private MyTransaction _transaction = new();
+        public MyTransaction Transaction
         {
             get => _transaction;
             set { _transaction = value; }
@@ -45,8 +45,8 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
-        private ObservableCollection<Transaction> _transactions = new();
-        public ObservableCollection<Transaction> Transactions
+        private ObservableCollection<MyTransaction> _transactions = new();
+        public ObservableCollection<MyTransaction> Transactions
         {
             get => _transactions;
             set
@@ -65,100 +65,44 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
-        public DiagramViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger, ChartManager chartManager)
+        public DiagramViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger)
         {
             Time = DateTime.Today;
             _navigationService = navigationService;
             _dataService = dataService;
             _messenger = messenger;
-            _chartManager = chartManager;
 
             _messenger.Register<NewDataMessage>(this, (message) =>
             {
-                Transaction = (Transaction)message.Data;
-                MyChart = _chartManager.GetCharts(Transaction);
+                Transaction = (MyTransaction)message.Data;
                 Transactions.Add(Transaction);
-                foreach (var item in Transactions)
-                {
-                    if (item.Date == Time.Date)
-                    {
-                        MyChart = _chartManager.GetCharts(item);
-                        check = true;
-                    }
-                }
-                if (!check)
-                {
-                    MyChart = null;
-                }
-                check = false;                
+                MyChart = _chartManager.GetCharts(Transactions, Time);
             });
         }
+
         public DelegateCommand<Button> CategoriesCommand
         {
             get => new(button =>
             {
-                if (Transactions.Count > 0)
-                {
-                    foreach (var item in Transactions)
-                    {
-                        if (item.FullTime == Time)
-                        {
-                            _dataService.SendData(new object[] { button, item, Time });
-                            _navigationService.NavigateTo<CalculatorViewModel>();
-                        }
-                        else
-                        {
-                            _dataService.SendData(new object[] { button, Transaction, Time });
-                            _navigationService.NavigateTo<CalculatorViewModel>();
-                        }
-                    }
-                }
-                else
-                {
-                    _dataService.SendData(new object[] { button, Transaction, Time });
-                    _navigationService.NavigateTo<CalculatorViewModel>();
-                }
+                _dataService.SendData(new object[] { button, Time });
+                _navigationService.NavigateTo<CalculatorViewModel>();
+
             });
         }
-
         public DelegateCommand Right_button
         {
             get => new(() =>
             {
-                Time = Time.AddDays(+1);
-                foreach (var item in Transactions)
-                {
-                    if (item.Date == Time.Date)
-                    {
-                        MyChart = _chartManager.GetCharts(item);
-                        check = true;
-                    }
-                }
-                if (!check)
-                {
-                    MyChart = null;
-                }
-                check = false;
+                Time = Time.AddDays(+1);                
+                MyChart = _chartManager.GetCharts(Transactions, Time);
             });
         }
         public DelegateCommand Left_button
         {
             get => new(() =>
             {
-                Time = Time.AddDays(-1);
-                foreach (var item in Transactions)
-                {
-                    if (item.Date == Time.Date)
-                    {
-                        MyChart = _chartManager.GetCharts(item);
-                        check = true;
-                    }
-                }
-                if (!check)
-                {
-                    MyChart = null;
-                }
-                check = false;
+                Time = Time.AddDays(-1);                
+                MyChart = _chartManager.GetCharts(Transactions, Time);
             });
         }
     }

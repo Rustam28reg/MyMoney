@@ -10,7 +10,7 @@ using WPF_ProjectWork.Enums;
 
 namespace WPF_ProjectWork.Services.Classes
 {
-    class Transaction
+    class MyTransaction
     {
         public string Description { get; set; } //описание
         public double Value { get; set; } //Количество
@@ -19,9 +19,9 @@ namespace WPF_ProjectWork.Services.Classes
         public string Category { get; set; }
         public Color Color { get; set; }
 
-        public Transaction() {}
+        public MyTransaction() {}
 
-        public Transaction(DateTime date, string description, double value, DateTime allDate, string category, Color color)
+        public MyTransaction(DateTime date, string description, double value, DateTime allDate, string category, Color color)
         {
             Description = description;
             Value = value;
@@ -31,7 +31,7 @@ namespace WPF_ProjectWork.Services.Classes
             Color = color;
         }
 
-        public Transaction(DateTime date, string description, double value, DateTime allDate, Expense category)
+        public MyTransaction(DateTime date, string description, double value, DateTime allDate, Expense category)
         {
             Description = description;
             Value = value;
@@ -85,7 +85,7 @@ namespace WPF_ProjectWork.Services.Classes
             }
         }
 
-        public Transaction(DateTime date, string description, double value, DateTime allDate, Encome category)
+        public MyTransaction(DateTime date, string description, double value, DateTime allDate, Encome category)
         {
             Description = description;
             Value = value;

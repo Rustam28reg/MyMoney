@@ -3,6 +3,7 @@ using LiveCharts.Wpf;
 using LiveCharts.Wpf.Charts.Base;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,29 +15,34 @@ namespace WPF_ProjectWork.Services.Classes
     class ChartManager
     {
         PieChart Chart = new PieChart();
-        public Transaction Transaction { get; set; }
-        public PieChart GetCharts(Transaction _transaction)
+        public DateTime Time { get; set; }
+        public ObservableCollection<MyTransaction> Transactions { get; set; }
+        public PieChart GetCharts(ObservableCollection<MyTransaction> _transactions, DateTime time)
         {
-            Transaction = _transaction;
+            Chart = new PieChart();
+            Transactions = _transactions;
+            Time = time;
 
-            for (int i = 0; i < Chart.Series.Count; i++)
+            foreach (var transaction in Transactions.Where(t => t.Date == Time))
             {
-                if (Chart.Series[i].Title == Transaction.Category)
+                PieSeries? existingSeries = Chart.Series.FirstOrDefault(s => s.Title == transaction.Category) as PieSeries;
+
+                if (existingSeries != null)
                 {
-                    for (int j = 0; j < Chart.Series[i].Values.Count; j++)
+                    existingSeries.Values[0] = (double)existingSeries.Values[0] + transaction.Value;                                       
+                }
+                else
+                {
+                    Chart.Series.Add(new PieSeries
                     {
-                        Chart.Series[i].Values[j] = (double)Chart.Series[i].Values[j] + Transaction.Value;
-                    }
-                    return Chart;
+                        Title = transaction.Category,
+                        Values = new ChartValues<double> { transaction.Value },
+                        Fill = new SolidColorBrush(transaction.Color)
+                    });
                 }
             }
+            Chart.InnerRadius = 60;
 
-            Chart.Series.Add(new PieSeries
-            {
-                Title = Transaction.Category,
-                Values = new ChartValues<double> { Transaction.Value },
-                Fill = new SolidColorBrush(Transaction.Color)
-            });
             return Chart;
         }
     }

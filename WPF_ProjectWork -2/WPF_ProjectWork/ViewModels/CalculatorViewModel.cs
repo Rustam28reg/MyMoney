@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -26,7 +27,7 @@ namespace WPF_ProjectWork.ViewModels
         private Expense _expense;
         public string InputText { get; set; }
         public DateTime Time { get; set; }
-        private Transaction Transaction { get; set; }
+        private MyTransaction Transaction { get; set; }
         private Button Button { get; set; }
         public DelegateCommand<string> Number_Click { get; set; }
         public DelegateCommand Equal_Click { get; set; }
@@ -69,10 +70,9 @@ namespace WPF_ProjectWork.ViewModels
             _messenger.Register<DataMessage>(this, message =>
             {
                 Button = message.Data[0] as Button;
-                Transaction = message.Data[1] as Transaction;
+                Time = (DateTime)message.Data[1];
                 _image = Button.Content as Image;
                 Image = _image.Source.ToString();
-                Time = (DateTime)message.Data[2];
                 Enum.TryParse(Button.Name, out _expense);
             });
 
@@ -131,7 +131,7 @@ namespace WPF_ProjectWork.ViewModels
             () =>
             {
                 _result = double.Parse(new DataTable().Compute(allText.ToString(), "").ToString());
-                Transaction = new Transaction(Time, InputText, _result, DateTime.Now, _expense);
+                Transaction = new MyTransaction(Time, InputText, _result, DateTime.Now, _expense);
                 _dataService.NewSendData(Transaction);
                 _navigationService.NavigateTo<DiagramViewModel>();
                 Text = "";

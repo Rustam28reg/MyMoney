@@ -263,6 +263,9 @@
                 <Image Source="/Views/Res/Icons/Right.png" />
             </Button>
         </Grid>
+
     </Grid>
 
+    
+    
 </UserControl>

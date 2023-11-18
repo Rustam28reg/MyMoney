@@ -24,10 +24,10 @@ namespace WPF_ProjectWork.Services.Classes
 
         private Button MyButton { get; set; }
 
-        private Transaction transaction;
+        private MyTransaction transaction;
 
         private double Result;
-        public Transaction Chart
+        public MyTransaction Chart
         {
             get => transaction;
             set

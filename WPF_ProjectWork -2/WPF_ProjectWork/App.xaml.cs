@@ -32,7 +32,6 @@ namespace WPF_ProjectWork
             Container.RegisterSingleton<DiagramViewModel>();
             Container.RegisterSingleton<CalculatorViewModel>();
             Container.RegisterSingleton<TransactionService>();
-            Container.RegisterSingleton<ChartManager>();
 
             Container.Verify();
         }
