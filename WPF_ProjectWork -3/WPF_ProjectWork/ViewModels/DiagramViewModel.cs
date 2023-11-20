@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using WPF_ProjectWork.Enums;
 using WPF_ProjectWork.Messages;
 using WPF_ProjectWork.Services.Classes;
 using WPF_ProjectWork.Services.Interfaces;
@@ -80,20 +81,12 @@ namespace WPF_ProjectWork.ViewModels
             });
         }
 
-        public DelegateCommand<Button> CategoriesCommand
-        {
-            get => new(button =>
-            {
-                _dataService.SendData(new object[] { button, Time });
-                _navigationService.NavigateTo<CalculatorViewModel>();
-
-            });
-        }
         public DelegateCommand Right_button
         {
             get => new(() =>
             {
-                Time = Time.AddDays(+1);                
+                Time = Time.AddDays(+1);
+                _dataService.SendDataTime(Time);
                 MyChart = _chartManager.GetCharts(Transactions, Time);
             });
         }
@@ -101,8 +94,24 @@ namespace WPF_ProjectWork.ViewModels
         {
             get => new(() =>
             {
-                Time = Time.AddDays(-1);                
+                Time = Time.AddDays(-1);         
+                _dataService.SendDataTime(Time);
                 MyChart = _chartManager.GetCharts(Transactions, Time);
+            });
+        }
+
+        public DelegateCommand ExpenseSortCommand
+        {
+            get => new(() =>
+            {
+            MyChart = _chartManager.GetCharts(new ObservableCollection<MyTransaction>(Transactions.Where(t => Enum.TryParse(t.Category, out Expense expense))), Time);
+            });
+        }  
+        public DelegateCommand IncomeSortCommand
+        {
+            get => new(() =>
+            {
+            MyChart = _chartManager.GetCharts(new ObservableCollection<MyTransaction>(Transactions.Where(t => Enum.TryParse(t.Category, out Income income))), Time);
             });
         }
     }

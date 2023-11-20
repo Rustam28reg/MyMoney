@@ -71,13 +71,13 @@ namespace WPF_ProjectWork.ViewModels
             {
                 Button = message.Data[0] as Button;
                 Time = (DateTime)message.Data[1];
-                _image = Button.Content as Image;
-                Image = _image.Source.ToString();
+                //_image = Button.Content as Image;
+                //Image = _image.Source.ToString();
                 Enum.TryParse(Button.Name, out _expense);
             });
 
 
-            Number_Click = new DelegateCommand<string>(
+                Number_Click = new DelegateCommand<string>(
             (operation) =>
             {
                 if (Text.Length < 12)
@@ -124,7 +124,7 @@ namespace WPF_ProjectWork.ViewModels
             {
                 Text = "";
                 allText.Clear();
-                _navigationService.NavigateTo<DiagramViewModel>();
+                _navigationService.RightBorderNavigateTo<CategoriesViewModel>();
             });
 
             Add_Command = new DelegateCommand(
@@ -132,8 +132,8 @@ namespace WPF_ProjectWork.ViewModels
             {
                 _result = double.Parse(new DataTable().Compute(allText.ToString(), "").ToString());
                 Transaction = new MyTransaction(Time, InputText, _result, DateTime.Now, _expense);
-                _dataService.NewSendData(Transaction);
-                _navigationService.NavigateTo<DiagramViewModel>();
+                _dataService.SendData(Transaction);
+                _navigationService.RightBorderNavigateTo<CategoriesViewModel>();
                 Text = "";
                 allText.Clear();
             },

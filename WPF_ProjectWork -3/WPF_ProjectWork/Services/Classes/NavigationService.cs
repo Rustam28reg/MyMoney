@@ -25,4 +25,12 @@ class NavigationService : INavigationService
             ViewModelType = App.Container.GetInstance<T>()
         });
     }
+    public void RightBorderNavigateTo<T>() where T : ViewModelBase
+    {
+        _messenger.Send(new RightBorderNavigationMessage
+        {
+            ViewModelType = App.Container.GetInstance<T>()
+        });
+    }
+
 }

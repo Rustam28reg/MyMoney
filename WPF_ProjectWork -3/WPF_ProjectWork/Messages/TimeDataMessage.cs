@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_ProjectWork.Enums
+namespace WPF_ProjectWork.Messages
 {
-    internal enum Encome
+    class TimeDataMessage
     {
-        Salary,
-        Gift,
-        Obligation,
-        Other
+        public DateTime Data { get; set; }
     }
 }

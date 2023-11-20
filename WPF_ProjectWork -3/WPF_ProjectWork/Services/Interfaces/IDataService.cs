@@ -8,6 +8,7 @@ namespace WPF_ProjectWork.Services.Interfaces;
 
 interface IDataService
 {
-    public void NewSendData(object data);
+    public void SendData(object data);
     public void SendData(object [] data);
+    void SendDataTime(DateTime time);
 }

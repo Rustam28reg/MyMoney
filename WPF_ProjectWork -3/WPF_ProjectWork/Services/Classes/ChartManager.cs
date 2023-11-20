@@ -41,7 +41,7 @@ namespace WPF_ProjectWork.Services.Classes
                     });
                 }
             }
-            Chart.InnerRadius = 60;
+            Chart.InnerRadius = 80;
 
             return Chart;
         }

@@ -6,11 +6,44 @@
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:wp="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="500" MaxHeight="700" MaxWidth="500">
+             d:DesignHeight="495" d:DesignWidth="540" MaxHeight="495" MaxWidth="540">
 
 
-    <Grid>        
-        <wp:PieChart
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="1" Grid.ColumnSpan="3" BorderThickness="0 0 0 1" BorderBrush="#ccd7ff"/>
+
+        <Grid Grid.RowSpan="2" Grid.Column="0">
+            <Button Command="{Binding Left_button}" Width="70" Style="{StaticResource WindowButton}" Height="40">
+                <md:PackIcon Kind="ArrowLeft"  Style="{StaticResource CategoriesButtonIcon}"/>
+            </Button>
+        </Grid>
+            <Grid  Grid.RowSpan="2" Grid.Column="1">
+            <TextBlock Text ="{Binding Time, StringFormat='dd.MM.yyyy'}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#ccd7ff" FontSize="20" FontWeight="Bold"/>
+        </Grid>
+            <Grid  Grid.RowSpan="2" Grid.Column="2">
+            <Button Command="{Binding Right_button}" Width="70"  Style="{StaticResource WindowButton}" Height="40">
+                <md:PackIcon Kind="ArrowRight"  Style="{StaticResource CategoriesButtonIcon}"/>
+            </Button>
+        </Grid>
+
+
+        <wp:PieChart             
+            Margin="20"
+            Grid.Row="2"
+            Grid.ColumnSpan="3"
             x:Name="Diagram"            
             Content="{Binding MyChart}">
         </wp:PieChart>         

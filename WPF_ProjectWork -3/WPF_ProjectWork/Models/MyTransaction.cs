@@ -85,7 +85,7 @@ namespace WPF_ProjectWork.Services.Classes
             }
         }
 
-        public MyTransaction(DateTime date, string description, double value, DateTime allDate, Encome category)
+        public MyTransaction(DateTime date, string description, double value, DateTime allDate, Income category)
         {
             Description = description;
             Value = value;
@@ -95,16 +95,16 @@ namespace WPF_ProjectWork.Services.Classes
 
             switch (category)
             {
-                case Encome.Salary:
+                case Income.Salary:
                     Color = Colors.DarkViolet;
                     break;
-                case Encome.Gift:
+                case Income.Gift:
                     Color = Colors.Blue;
                     break;
-                case Encome.Obligation:
+                case Income.Obligation:
                     Color = Colors.Chartreuse;
                     break;
-                case Encome.Other:
+                case Income.Other:
                     Color = Colors.IndianRed;
                     break;
             }

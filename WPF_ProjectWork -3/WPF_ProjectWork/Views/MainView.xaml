@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_ProjectWork"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         MaxHeight="740" MaxWidth="1280" MinHeight="740" MinWidth="1280"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background ="Transparent">
 
-        <Grid>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
@@ -25,58 +25,53 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <StackPanel> 
-                
+            <StackPanel>
+
                 <!--Desctop Name-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 35 50 0">
-               
+
                     <StackPanel Margin="10 0 0 0" VerticalAlignment="Center">
                         <TextBlock Text="My Money" FontSize="40" Margin="0 0 0 5" Foreground="#7f7cf1" FontFamily="Freestyle Script"/>
                         <TextBlock Text="Beta 1.0" FontSize="11" Foreground="#7788bf"/>
                     </StackPanel>
                 </StackPanel>
-                
+
                 <Separator Height="0.8" Margin="20 30" Background="#46558a"/>
-                
+
                 <!--Menu Buttons-->
 
                 <Button Style="{StaticResource menuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                        <md:PackIcon Kind="MonitorDashboard" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource menuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="FileSignature" Style="{StaticResource menuButtonIcon}"/>
+                        <md:PackIcon Kind="ListBox" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="History" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </Button>
                 <Button Style="{StaticResource menuButton}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
-                        <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
-                    </StackPanel>
-                </Button>
-                <Button Style="{StaticResource menuButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <fa:IconImage Icon="Cog" Style="{StaticResource menuButtonIcon}"/>
+                        <md:PackIcon Kind="Settings" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </Button>
 
 
 
+
             </StackPanel>
         </Border>
-        
+
         <!--Main Menu-->
         <Border BorderThickness="0" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="DragWindow">
             <Border.Background>
-            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
-                <GradientStop Color="#41518f" Offset="0"/>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#41518f" Offset="0"/>
                     <GradientStop Color="#2c386c" Offset="1"/>
-            </LinearGradientBrush>
+                </LinearGradientBrush>
             </Border.Background>
         </Border>
         <!--<ContentControl Grid.Column="2" Grid.RowSpan="4" Content="{Binding CurrentView, UpdateSourceTrigger=PropertyChanged}"/>-->
@@ -85,16 +80,18 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="100"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="554.617"/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
                 <Button Click="Minimize_Click" Name="Minimize" Style="{StaticResource WindowButton}">
-                    <fa:IconImage Icon="Minimize" Style="{StaticResource menuButtonIcon}"/>
+                    <md:PackIcon Kind="Minimize" Style="{StaticResource menuButtonIcon}"/>
+
                 </Button>
 
                 <Button  Click="Close_Click" Name="Close" Style="{StaticResource WindowButton}">
-                    <fa:IconImage Icon="Close" Style="{StaticResource menuButtonIcon}"/>
+                    <md:PackIcon Kind="Close" Style="{StaticResource menuButtonIcon}"/>
+
                 </Button>
             </StackPanel>
 
@@ -103,9 +100,9 @@
                 <Button Content="Week" Style="{StaticResource TopMenuButton}"/>
                 <Button Content="Month" Style="{StaticResource TopMenuButton}"/>
                 <Button Content="Year" Style="{StaticResource TopMenuButton}"/>
-                <Button Content="All time" Style="{StaticResource TopMenuButton}"/>
+                <Button Content="All Time" Style="{StaticResource TopMenuButton}"/>
             </StackPanel>
-            
+
             <StackPanel Grid.Row="1" HorizontalAlignment="Left">
                 <TextBlock Grid.Row="1" FontSize="26" Foreground="#ccd7ff" HorizontalAlignment="Left" Text="{Binding Time}" Margin="50 0 0 0"/>
                 <Separator Height="0.8" Margin="50 0 0 0" Background="#5b60c4"/>
@@ -113,33 +110,19 @@
 
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="630"/>
                     <ColumnDefinition Width="400"/>
                 </Grid.ColumnDefinitions>
 
-                <Border CornerRadius="20" Background="#243771" Margin="50 50 20 40"/>
-                <ContentControl Grid.Column="0" Grid.Row="3" Content="{Binding CurrentView, UpdateSourceTrigger=PropertyChanged}"/>
+                <Border CornerRadius="20" Background="#243771" Margin="50 20 20 40"/>
+                <ContentControl Grid.Column="0" Content="{Binding CurrentView, UpdateSourceTrigger=PropertyChanged}" Margin="50,20,20,40"/>
+                
+                <Border Grid.Column="1" CornerRadius="20" Background="#243771" Margin=" 20 20 50 40"/>
+                <ContentControl Grid.Column="1" Content="{Binding RightBorder, UpdateSourceTrigger=PropertyChanged}" Margin="20,20,50,40"/>
 
 
-                <Border Grid.Column="1" CornerRadius="20" Background="#243771" Margin=" 20 50 50 40">
-                    <StackPanel>
-                        <StackPanel Margin="5 5 0 0" Orientation="Horizontal">
-                            <fa:IconImage Foreground="#707db2" Icon="Bars" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Foreground="#707db2" Text="categories" Margin="0 0 0 7" FontSize="30"  Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                        <Separator Height="0.8" Margin="20 10" Background="#46558a"/>
 
-                        <ListView Background="Transparent" >
-                            <Button Name="Car" Style="{StaticResource WindowButton}">
-                                <StackPanel  Orientation="Horizontal">
-                                    <fa:IconImage  Icon="Car" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
-                                </StackPanel>
-                            </Button>
 
-                        </ListView>
-                    </StackPanel>
-                </Border>
             </Grid>
 
         </Grid>
