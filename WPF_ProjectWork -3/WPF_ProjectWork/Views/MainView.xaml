@@ -86,12 +86,10 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
                 <Button Click="Minimize_Click" Name="Minimize" Style="{StaticResource WindowButton}">
                     <md:PackIcon Kind="Minimize" Style="{StaticResource menuButtonIcon}"/>
-
                 </Button>
 
                 <Button  Click="Close_Click" Name="Close" Style="{StaticResource WindowButton}">
                     <md:PackIcon Kind="Close" Style="{StaticResource menuButtonIcon}"/>
-
                 </Button>
             </StackPanel>
 
@@ -120,9 +118,14 @@
                 <Border Grid.Column="1" CornerRadius="20" Background="#243771" Margin=" 20 20 50 40"/>
                 <ContentControl Grid.Column="1" Content="{Binding RightBorder, UpdateSourceTrigger=PropertyChanged}" Margin="20,20,50,40"/>
 
+            </Grid>
 
-
-
+            <Grid Grid.Row="2">
+                <StackPanel Orientation="Horizontal">
+                    <Border CornerRadius="20" Width="295" Background="#243771" Margin="50 10 10 0"/>
+                    <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0"/>
+                    <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0"/>
+                </StackPanel>
             </Grid>
 
         </Grid>
