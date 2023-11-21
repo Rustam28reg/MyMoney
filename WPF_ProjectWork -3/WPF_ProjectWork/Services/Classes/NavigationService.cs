@@ -32,5 +32,12 @@ class NavigationService : INavigationService
             ViewModelType = App.Container.GetInstance<T>()
         });
     }
+    public void DashboardViewNavigateTo<T>() where T : ViewModelBase
+    {
+        _messenger.Send(new MainViewNavigationMessage        
+        {
+            ViewModelType = App.Container.GetInstance<T>()
+        });
+    }
 
 }

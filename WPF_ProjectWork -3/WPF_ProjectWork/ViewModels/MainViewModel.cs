@@ -8,30 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using WPF_ProjectWork.Messages;
 using System.Windows.Threading;
+using Prism.Commands;
+using System.ComponentModel.Design.Serialization;
+using WPF_ProjectWork.Services.Interfaces;
 
 namespace WPF_ProjectWork.ViewModels
 {
     class MainViewModel : ViewModelBase
     {
-        private string _time;
-        public string Time
-        {
-            get => _time;
-            set
-            {
-                Set(ref _time, value);
-            }
-        }
-
-        private readonly DispatcherTimer _timer;
-       
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            Time = DateTime.Now.ToString("dd.MM.yyyy   HH:mm"); // Обновляем время
-        }
-
         private readonly IMessenger _messenger;
+        private readonly INavigationService _navigationService;
 
         private ViewModelBase _currentView;
         public ViewModelBase CurrentView
@@ -42,36 +28,35 @@ namespace WPF_ProjectWork.ViewModels
                 Set(ref _currentView, value); 
             }
         }
-        private ViewModelBase _rightBorder;
-        public ViewModelBase RightBorder
-        {
-            get => _rightBorder;
-            set
-            {
-                Set(ref _rightBorder, value); 
-            }
-        }
-        public MainViewModel(IMessenger messenger)
+
+        public MainViewModel(IMessenger messenger, INavigationService navigationService )
         {
             _messenger = messenger;
-            CurrentView = App.Container.GetInstance<DiagramViewModel>();
-            RightBorder = App.Container.GetInstance<CategoriesViewModel>();
+            _navigationService = navigationService;
+            CurrentView = App.Container.GetInstance<DashboardViewModel>();
 
-            Time = DateTime.Now.ToString("dd.MM.yyyy   HH:mm");
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMinutes(1); 
-            _timer.Tick += Timer_Tick;
-            _timer.Start();
-
-            _messenger.Register<NavigationMessage>(this, message =>
+            _messenger.Register<MainViewNavigationMessage>(this, message =>
             {
                 CurrentView = message.ViewModelType;
             }); 
-            _messenger.Register<RightBorderNavigationMessage>(this, message =>
+        }
+
+        public DelegateCommand DashboardCommand
+        {
+            get => new(() =>
             {
-                RightBorder = message.ViewModelType;
+                _navigationService.DashboardViewNavigateTo<DashboardViewModel>();
             });
         }
-        
+
+
+        public DelegateCommand HistoryCommand
+        {
+            get => new(() =>
+            {
+                _navigationService.DashboardViewNavigateTo<HistoryViewModel>();
+            });
+        }
+
     }
 }

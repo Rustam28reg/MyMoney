@@ -40,13 +40,13 @@
 
                 <!--Menu Buttons-->
 
-                <Button Style="{StaticResource menuButton}">
+                <Button Style="{StaticResource menuButton}" Command="{Binding DashboardCommand}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="MonitorDashboard" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText}"/>
                     </StackPanel>
                 </Button>
-                <Button Style="{StaticResource menuButton}">
+                <Button Style="{StaticResource menuButton}" Command="{Binding HistoryCommand}">
                     <StackPanel Orientation="Horizontal">
                         <md:PackIcon Kind="ListBox" Style="{StaticResource menuButtonIcon}"/>
                         <TextBlock Text="History" Style="{StaticResource menuButtonText}"/>
@@ -78,9 +78,7 @@
         <Grid Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="100"/>
-                <RowDefinition Height="554.617"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" >
@@ -92,41 +90,8 @@
                     <md:PackIcon Kind="Close" Style="{StaticResource menuButtonIcon}"/>
                 </Button>
             </StackPanel>
-
-            <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 120 0">
-                <Button Content="Today" Style="{StaticResource TopMenuButton}"/>
-                <Button Content="Week" Style="{StaticResource TopMenuButton}"/>
-                <Button Content="Month" Style="{StaticResource TopMenuButton}"/>
-                <Button Content="Year" Style="{StaticResource TopMenuButton}"/>
-                <Button Content="All Time" Style="{StaticResource TopMenuButton}"/>
-            </StackPanel>
-
-            <StackPanel Grid.Row="1" HorizontalAlignment="Left">
-                <TextBlock Grid.Row="1" FontSize="26" Foreground="#ccd7ff" HorizontalAlignment="Left" Text="{Binding Time}" Margin="50 0 0 0"/>
-                <Separator Height="0.8" Margin="50 0 0 0" Background="#5b60c4"/>
-            </StackPanel>
-
-            <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="630"/>
-                    <ColumnDefinition Width="400"/>
-                </Grid.ColumnDefinitions>
-
-                <Border CornerRadius="20" Background="#243771" Margin="50 20 20 40"/>
-                <ContentControl Grid.Column="0" Content="{Binding CurrentView, UpdateSourceTrigger=PropertyChanged}" Margin="50,20,20,40"/>
-                
-                <Border Grid.Column="1" CornerRadius="20" Background="#243771" Margin=" 20 20 50 40"/>
-                <ContentControl Grid.Column="1" Content="{Binding RightBorder, UpdateSourceTrigger=PropertyChanged}" Margin="20,20,50,40"/>
-
-            </Grid>
-
-            <Grid Grid.Row="2">
-                <StackPanel Orientation="Horizontal">
-                    <Border CornerRadius="20" Width="295" Background="#243771" Margin="50 10 10 0"/>
-                    <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0"/>
-                    <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0"/>
-                </StackPanel>
-            </Grid>
+            
+            <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView, UpdateSourceTrigger=PropertyChanged}"/>
 
         </Grid>
     </Grid>

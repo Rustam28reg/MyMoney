@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_ProjectWork.Messages
+namespace WPF_ProjectWork.ViewModels;
+
+public class HistoryViewModel : ViewModelBase
 {
-    class NavigationMessage
-    {
-        public ViewModelBase ViewModelType { get; set; }
-    }
+    
 }

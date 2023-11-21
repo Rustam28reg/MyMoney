@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPF_ProjectWork.Services.Interfaces;
-
-public interface INavigationService
+namespace WPF_ProjectWork.Messages
 {
-    public void NavigateTo<T>() where T: ViewModelBase;
+    class MainViewNavigationMessage
+    {
+        public ViewModelBase ViewModelType { get; set; }
+
+    }
 }

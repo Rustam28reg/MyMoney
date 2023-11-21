@@ -33,6 +33,8 @@ namespace WPF_ProjectWork
             Container.RegisterSingleton<CalculatorViewModel>();
             Container.RegisterSingleton<TransactionService>();
             Container.RegisterSingleton<CategoriesViewModel>();
+            Container.RegisterSingleton<DashboardViewModel>();
+            Container.RegisterSingleton<HistoryViewModel>();
 
             Container.Verify();
         }

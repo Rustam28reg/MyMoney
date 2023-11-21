@@ -12,16 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_ProjectWork.ViewModels;
 
 namespace WPF_ProjectWork.Views
 {
     /// <summary>
-    /// Interaction logic for Calculator.xaml
+    /// Interaction logic for DashboardView.xaml
     /// </summary>
-    public partial class CalculatorView : UserControl
+    public partial class DashboardView : UserControl
     {
-        public CalculatorView()
+        public DashboardView()
         {
             InitializeComponent();
         }

@@ -19,6 +19,12 @@
         <DataTemplate DataType="{x:Type ViewModels:CategoriesViewModel}">
             <View:CategoriesView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:DashboardViewModel}">
+            <View:DashboardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type ViewModels:HistoryViewModel}">
+            <View:HistoryView/>
+        </DataTemplate>
 
         <Style x:Key = "menuButton" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />

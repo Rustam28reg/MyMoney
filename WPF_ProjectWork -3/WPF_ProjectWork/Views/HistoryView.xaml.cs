@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,13 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_ProjectWork.ViewModels;
 
 namespace WPF_ProjectWork.Views
 {
-    public partial class ExpenseDiagramView : UserControl
+    /// <summary>
+    /// Interaction logic for HistoryView.xaml
+    /// </summary>
+    public partial class HistoryView : UserControl
     {
-        public ExpenseDiagramView()
+        public HistoryView()
         {
             InitializeComponent();
         }
