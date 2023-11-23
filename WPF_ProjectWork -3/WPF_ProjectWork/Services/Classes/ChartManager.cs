@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using WPF_ProjectWork.Services.Interfaces;
 
 namespace WPF_ProjectWork.Services.Classes
 {
@@ -17,13 +18,21 @@ namespace WPF_ProjectWork.Services.Classes
         PieChart Chart = new PieChart();
         public DateTime Time { get; set; }
         public ObservableCollection<MyTransaction> Transactions { get; set; }
+        public ITransactionService _transactionService { get; set; }
+
+        public ChartManager(ITransactionService transactionService)
+        {
+            _transactionService = transactionService;
+            Transactions = transactionService.Transactions;
+        }
+
         public PieChart GetCharts(ObservableCollection<MyTransaction> _transactions, DateTime time)
         {
             Chart = new PieChart();
             Transactions = _transactions;
             Time = time;
 
-            foreach (var transaction in Transactions.Where(t => t.Date == Time))
+            foreach (var transaction in _transactions.Where(t => t.Date == Time))
             {
                 PieSeries? existingSeries = Chart.Series.FirstOrDefault(s => s.Title == transaction.Category) as PieSeries;
 

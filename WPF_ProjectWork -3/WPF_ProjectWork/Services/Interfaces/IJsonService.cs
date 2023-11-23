@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace WPF_ProjectWork.Services.Interfaces;
 
-interface IJsonService
+public interface IJsonService
 {
-    public T Deserialize<T>(string json);
+    public void Serialize<T>(string path, ObservableCollection<T> list);
+    public ObservableCollection<T> Deserialize<T>(string fileName);
+
+
 }

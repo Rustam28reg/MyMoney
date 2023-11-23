@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_ProjectWork.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="700" d:DesignWidth="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -41,10 +41,29 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal">
-                <Border CornerRadius="20" Width="295" Background="#243771" Margin="50 10 10 0"/>
-                <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0"/>
-                <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0"/>
+            <StackPanel Orientation="Horizontal" >
+                <Border CornerRadius="20" Width="295" Background="#243771" Margin="50 10 10 0">
+                    <Button Height="70" x:Name="ExpenceChart" Background = "Transparent" Margin="10,0,10,0" Command="{Binding ExpenseSortCommand}" Style="{StaticResource WindowButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Expence - " FontSize="30" Foreground="#ccd7ff" Width="180"/>
+                            <TextBlock Text="{Binding ExpenceValue}"/>
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border CornerRadius="20" Width="295" Background="#243771" Margin="10 10 10 0">
+                    <Button Height="70" x:Name="IncomeChart" Background = "Transparent" Margin="10,0,10,0" Command="{Binding IncomeSortCommand}" Style="{StaticResource WindowButton}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Income - " FontSize="30" Foreground="#ccd7ff" Width="180"/>
+                            <TextBlock Text="{Binding IncomeValue}"/> 
+                        </StackPanel>
+                    </Button>
+                </Border>
+                <Border Height="90" CornerRadius="20" Width="295" Background="#243771" Margin="10 10 0 0">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10">
+                        <TextBlock Text="Balance - " FontSize="30" Foreground="#ccd7ff" Width="180"/>
+                        <TextBlock Text="{Binding BalanceValue}"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
         </Grid>
     </Grid>

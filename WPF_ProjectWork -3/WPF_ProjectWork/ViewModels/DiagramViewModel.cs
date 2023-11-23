@@ -11,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,12 +25,17 @@ namespace WPF_ProjectWork.ViewModels
 {
     internal class DiagramViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
         private readonly IDataService _dataService;
         private readonly IMessenger _messenger;
+        private readonly IJsonService _jsonService;
+        private readonly ITransactionService _transactionService;
         private DateTime time = DateTime.Now;
-        private ChartManager _chartManager = new();
+        private ChartManager _chartManager;
         private bool check = false;
+        private const string TransactionPath = "Transaction.json";
+        public DelegateCommand Right_button { get; set; }
+        public DelegateCommand Left_button { get; set; }
+
 
         private MyTransaction _transaction = new();
         public MyTransaction Transaction
@@ -56,6 +62,7 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
+
         private PieChart myChart = new();
         public PieChart MyChart
         {
@@ -66,54 +73,59 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
-        public DiagramViewModel(INavigationService navigationService, IDataService dataService, IMessenger messenger)
+        public DiagramViewModel(IDataService dataService, IMessenger messenger, IJsonService jsonService, ITransactionService transactionService, ChartManager chartManager)
         {
             Time = DateTime.Today;
-            _navigationService = navigationService;
+            _chartManager = chartManager;
             _dataService = dataService;
             _messenger = messenger;
+            _jsonService = jsonService;
+            _transactionService = transactionService;
+            Transactions = transactionService.Transactions;
+            if(Transactions.Count != 0)
+            {
+                MyChart = _chartManager.GetCharts(Transactions, Time);
+            }
 
             _messenger.Register<NewDataMessage>(this, (message) =>
             {
-                Transaction = (MyTransaction)message.Data;
-                Transactions.Add(Transaction);
-                MyChart = _chartManager.GetCharts(Transactions, Time);
+                if(message.Data is PieChart)
+                {
+                    MyChart = (PieChart)message.Data;
+                }
+                else if (message.Data is MyTransaction)
+                {
+                    Transaction = (MyTransaction)message.Data;
+                    Transactions.Add(Transaction);
+                    _jsonService.Serialize(TransactionPath, Transactions);
+                    MyChart = _chartManager.GetCharts(Transactions, Time);
+                }
             });
-        }
 
-        public DelegateCommand Right_button
-        {
-            get => new(() =>
+            Right_button = new DelegateCommand(
+                () =>
             {
                 Time = Time.AddDays(+1);
                 _dataService.SendDataTime(Time);
                 MyChart = _chartManager.GetCharts(Transactions, Time);
             });
-        }
-        public DelegateCommand Left_button
-        {
-            get => new(() =>
+
+            Left_button = new DelegateCommand(
+
+            () =>
             {
-                Time = Time.AddDays(-1);         
+                Time = Time.AddDays(-1);
                 _dataService.SendDataTime(Time);
                 MyChart = _chartManager.GetCharts(Transactions, Time);
             });
         }
 
-        public DelegateCommand ExpenseSortCommand
-        {
-            get => new(() =>
-            {
-            MyChart = _chartManager.GetCharts(new ObservableCollection<MyTransaction>(Transactions.Where(t => Enum.TryParse(t.Category, out Expense expense))), Time);
-            });
-        }  
-        public DelegateCommand IncomeSortCommand
-        {
-            get => new(() =>
-            {
-            MyChart = _chartManager.GetCharts(new ObservableCollection<MyTransaction>(Transactions.Where(t => Enum.TryParse(t.Category, out Income income))), Time);
-            });
-        }
+
+
     }
+
+
+
 }
+
 

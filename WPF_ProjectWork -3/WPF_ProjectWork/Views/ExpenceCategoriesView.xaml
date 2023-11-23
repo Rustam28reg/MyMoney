@@ -21,98 +21,98 @@
 
                 <Button Name="Car"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Car" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="DarkViolet"  Kind="Car" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Car" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Cloth"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="ClothesHanger" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Coral" Kind="ClothesHanger" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Cloth" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Food"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Food" Style="{StaticResource CategoriesButtonIcon}" />
+                        <md:PackIcon Foreground="Chartreuse" Kind="Food" Style="{StaticResource CategoriesButtonIcon}" />
                         <TextBlock Text="Food" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Health"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="HeartFlash" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="IndianRed" Kind="HeartFlash" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Health" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Hygiene"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="OralHygiene" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Red" Kind="OralHygiene" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Hygiene" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Party"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="PartyPopper" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="LightSkyBlue" Kind="PartyPopper" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Party" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Pet"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Pets" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Aquamarine" Kind="Pets" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Pet" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Phone"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Cellphone" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Blue" Kind="Cellphone" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Phone" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Present"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Present" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Aqua" Kind="Present" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Present" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Rest"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Airballoon" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Gold" Kind="Airballoon" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Rest" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Restaurant"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Restaurant" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="MediumVioletRed" Kind="Restaurant" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Restaurant" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Sport"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Dumbbell" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Goldenrod" Kind="Dumbbell" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Sport" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Taxi"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Taxi" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="Yellow" Kind="Taxi" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Taxi" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>
 
                 <Button Name="Travel"  Style="{StaticResource CategoriesButton}" Command="{Binding CategoriesCommand}"  CommandParameter="{Binding RelativeSource={RelativeSource Self}}">
                     <StackPanel  Orientation="Horizontal">
-                        <md:PackIcon Kind="Present" Style="{StaticResource CategoriesButtonIcon}"/>
+                        <md:PackIcon Foreground="LimeGreen" Kind="Present" Style="{StaticResource CategoriesButtonIcon}"/>
                         <TextBlock Text="Travel" Style="{StaticResource CategoriesButtonText}"/>
                     </StackPanel>
                 </Button>

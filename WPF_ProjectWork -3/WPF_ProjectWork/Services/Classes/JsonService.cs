@@ -1,18 +1,37 @@
-﻿using WPF_ProjectWork.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-
-namespace WPF_ProjectWork.Services.Classes;
+﻿using System.Collections.ObjectModel;
+using System.IO;
+using System.Xml;
+using WPF_ProjectWork.Services.Interfaces;
+using Newtonsoft.Json;
+using static WPF_ProjectWork.Services.Classes.JsonService;
 
 
- class JsonService : IJsonService
+namespace WPF_ProjectWork.Services.Classes
 {
-    public T Deserialize<T>(string json) 
+   
+   public class JsonService : IJsonService 
     {
-        return JsonSerializer.Deserialize<T>(json) ?? throw new NullReferenceException("Deserialize error");
+        public void Serialize<T>(string path, ObservableCollection<T> list)
+        {
+            using var fileStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+            using var streamWriter = new StreamWriter(fileStream);
+            string json = JsonConvert.SerializeObject(list, Newtonsoft.Json.Formatting.Indented);
+            streamWriter.Write(json);
+        }
+
+        public ObservableCollection<T> Deserialize<T>(string fileName)
+        {
+            using var fileStream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Read);
+            using var streamReader = new StreamReader(fileStream);
+
+            string json = streamReader.ReadToEnd();
+
+            var deserializedObject = JsonConvert.DeserializeObject<ObservableCollection<T>>(json, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All
+            });
+
+            return deserializedObject;
+        }
     }
 }

@@ -23,18 +23,18 @@ namespace WPF_ProjectWork
         public void Register()
         {
             Container.RegisterSingleton<IJsonService, JsonService>();
-
             Container.RegisterSingleton<IMessenger, Messenger>();
             Container.RegisterSingleton<INavigationService, NavigationService>();
             Container.RegisterSingleton<IDataService, DataService>();
+            Container.RegisterSingleton<ITransactionService, TransactionService>();
 
             Container.RegisterSingleton<MainViewModel>();
             Container.RegisterSingleton<DiagramViewModel>();
             Container.RegisterSingleton<CalculatorViewModel>();
-            Container.RegisterSingleton<TransactionService>();
             Container.RegisterSingleton<CategoriesViewModel>();
             Container.RegisterSingleton<DashboardViewModel>();
             Container.RegisterSingleton<HistoryViewModel>();
+            Container.RegisterSingleton<ChartManager>();
 
             Container.Verify();
         }
