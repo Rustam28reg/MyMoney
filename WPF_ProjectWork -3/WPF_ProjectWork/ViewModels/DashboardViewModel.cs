@@ -25,7 +25,7 @@ namespace WPF_ProjectWork.ViewModels
         public DelegateCommand IncomeSortCommand { get; set; }
         public ChartManager ChartManager { get; set; }
 
-        private DateTime Date { get; set; }
+        private DateTime Date { get; set; } = DateTime.Today;
 
         private readonly DispatcherTimer _timer;
 
@@ -46,6 +46,7 @@ namespace WPF_ProjectWork.ViewModels
         }
 
         private readonly IMessenger _messenger;
+        private readonly IDataService _dataService;
         private readonly ITransactionService _transactionService;
         private readonly IJsonService _jsonService;
 
@@ -89,10 +90,12 @@ namespace WPF_ProjectWork.ViewModels
             }
         }
 
-        public DashboardViewModel(IMessenger messenger, ITransactionService transactionService, IJsonService jsonService, ChartManager chartManager)
+        public DashboardViewModel(IDataService dataService, IMessenger messenger, ITransactionService transactionService, IJsonService jsonService, ChartManager chartManager)
         {
+            _dataService = dataService;
             _messenger = messenger;
             _transactionService = transactionService;
+            _transactions = transactionService.Transactions;
             ChartManager = chartManager;
             _jsonService = jsonService;
 
@@ -124,12 +127,14 @@ namespace WPF_ProjectWork.ViewModels
             () =>
             {
                 MyChart = ChartManager.GetCharts(new ObservableCollection<MyTransaction>(Transactions.Where(t => Enum.TryParse(t.Category, out Expense expense))), Date);
+                _dataService.SendData(MyChart);
             });
 
             IncomeSortCommand = new DelegateCommand(
             () =>
             {
                 MyChart = ChartManager.GetCharts(new ObservableCollection<MyTransaction>(Transactions.Where(t => Enum.TryParse(t.Category, out Income income))), Date);
+                _dataService.SendData(MyChart);
             });
 
 

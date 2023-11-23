@@ -12,7 +12,7 @@
 
             <StackPanel Margin="5 5 0 0" Orientation="Horizontal">
                 <md:PackIcon Margin="10" Foreground="#707db2" Kind="widgets" Style="{StaticResource CategoriesButtonIcon}"/>
-                <TextBlock Foreground="#707db2" Text="categories" Margin="0 0 0 7" FontSize="30"  Style="{StaticResource menuButtonText}"/>
+                <TextBlock Foreground="#707db2" Text=" Expence categories" Margin="0 0 0 7" FontSize="30"  Style="{StaticResource menuButtonText}"/>
             </StackPanel>
             <Separator Height="0.8" Margin="20 0 20 10" Background="#46558a"/>
 
